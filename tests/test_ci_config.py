@@ -29,6 +29,7 @@ class ConfigurationTests(unittest.TestCase):
             [{**SERVICE, "path": "apps/*"}],
             [{**SERVICE, "name": "pipeline"}],
             [{**SERVICE, "language": "unknown"}],
+            [{**SERVICE, "language": []}],
             [{**SERVICE, "type": "unknown"}],
         ]:
             with self.subTest(value=value), self.assertRaises(ValueError):

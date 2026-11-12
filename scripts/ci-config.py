@@ -33,7 +33,12 @@ def services_from_json(raw):
             raise ValueError(f"Invalid service path: {path!r}")
         if name in names or path in paths:
             raise ValueError("Service names and paths must be unique")
-        if service.get("language") not in LANGUAGES or service.get("type") not in TYPES:
+        if (
+            not isinstance(service.get("language"), str)
+            or service["language"] not in LANGUAGES
+            or not isinstance(service.get("type"), str)
+            or service["type"] not in TYPES
+        ):
             raise ValueError(f"Unsupported language or type for {name}")
         names.add(name)
         paths.add(path)
