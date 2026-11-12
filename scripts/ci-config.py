@@ -23,7 +23,7 @@ def services_from_json(raw):
         if not isinstance(service, dict):
             raise ValueError("Each service must be an object")
         name, path = service.get("name"), service.get("path")
-        if not isinstance(name, str) or not NAME.fullmatch(name) or name == "pipeline":
+        if not isinstance(name, str) or not NAME.fullmatch(name) or name in {"pipeline", "changes"}:
             raise ValueError(f"Invalid service name: {name!r}")
         if (
             not isinstance(path, str)
