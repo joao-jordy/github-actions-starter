@@ -42,6 +42,55 @@ are `go`, `rust`, `python`, `typescript`, `javascript`, `java`, and `dotnet`.
 Other fields are carried through to the matrix. Missing, empty or invalid
 configuration fails the workflow. No sample applications are included.
 
+## Minimal configuration per combination
+
+Every service needs `name`, `path`, `type` and `language`. Any combination of
+the values below is valid; replace `name` and `path` with your own unique values.
+Extra fields (such as `runtime`) are passed through to the matrix and are optional.
+
+### `static` — static site or assets
+
+| Language | Minimal entry |
+| --- | --- |
+| `go` | `{"name":"go-static","path":"apps/go-static","type":"static","language":"go"}` |
+| `rust` | `{"name":"rust-static","path":"apps/rust-static","type":"static","language":"rust"}` |
+| `python` | `{"name":"python-static","path":"apps/python-static","type":"static","language":"python"}` |
+| `typescript` | `{"name":"typescript-static","path":"apps/typescript-static","type":"static","language":"typescript"}` |
+| `javascript` | `{"name":"javascript-static","path":"apps/javascript-static","type":"static","language":"javascript"}` |
+| `java` | `{"name":"java-static","path":"apps/java-static","type":"static","language":"java"}` |
+| `dotnet` | `{"name":"dotnet-static","path":"apps/dotnet-static","type":"static","language":"dotnet"}` |
+
+### `lambda` — serverless function (add `runtime`, e.g. `provided.al2023`)
+
+| Language | Minimal entry |
+| --- | --- |
+| `go` | `{"name":"go-lambda","path":"apps/go-lambda","type":"lambda","language":"go"}` |
+| `rust` | `{"name":"rust-lambda","path":"apps/rust-lambda","type":"lambda","language":"rust"}` |
+| `python` | `{"name":"python-lambda","path":"apps/python-lambda","type":"lambda","language":"python"}` |
+| `typescript` | `{"name":"typescript-lambda","path":"apps/typescript-lambda","type":"lambda","language":"typescript"}` |
+| `javascript` | `{"name":"javascript-lambda","path":"apps/javascript-lambda","type":"lambda","language":"javascript"}` |
+| `java` | `{"name":"java-lambda","path":"apps/java-lambda","type":"lambda","language":"java"}` |
+| `dotnet` | `{"name":"dotnet-lambda","path":"apps/dotnet-lambda","type":"lambda","language":"dotnet"}` |
+
+### `container` — container image service
+
+| Language | Minimal entry |
+| --- | --- |
+| `go` | `{"name":"go-container","path":"apps/go-container","type":"container","language":"go"}` |
+| `rust` | `{"name":"rust-container","path":"apps/rust-container","type":"container","language":"rust"}` |
+| `python` | `{"name":"python-container","path":"apps/python-container","type":"container","language":"python"}` |
+| `typescript` | `{"name":"typescript-container","path":"apps/typescript-container","type":"container","language":"typescript"}` |
+| `javascript` | `{"name":"javascript-container","path":"apps/javascript-container","type":"container","language":"javascript"}` |
+| `java` | `{"name":"java-container","path":"apps/java-container","type":"container","language":"java"}` |
+| `dotnet` | `{"name":"dotnet-container","path":"apps/dotnet-container","type":"container","language":"dotnet"}` |
+
+Each service directory must contain a `Makefile` with a `ci` target, for example:
+
+```make
+ci:
+	@echo "run lint, tests and build here"
+```
+
 Run the configuration tests locally with:
 
 ```sh
